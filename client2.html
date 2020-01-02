@@ -7,6 +7,19 @@
         const socket = io('http://localhost:3000');
         socket.on('connect', function () {
             document.write('client2 Connected<br/>');
+
+            socket.emit('create', {
+                roomId: 'Vdje3KiKR5mlD8wdAAAD'
+            }, res => {
+                document.write(`进入房间成功，房间id是${ res }<br/>`)
+                document.write(`房间内发送消息 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br/>`)
+                // 房间内发送消息
+                socket.emit('send', {
+                    msg: 'client2',
+                    roomId: 'Vdje3KiKR5mlD8wdAAAD'
+                });
+            })
+
         });
         socket.on('events', function(data) {
             document.write('client2 event', data, '<br/>');
