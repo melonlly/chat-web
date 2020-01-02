@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>client2</title>
+    <script src="socket.io.dev.js"></script>
+    <script>
+        const socket = io('http://localhost:3000');
+        socket.on('connect', function () {
+            document.write('client2 Connected<br/>');
+        });
+        socket.on('events', function(data) {
+            document.write('client2 event', data, '<br/>');
+        });
+        socket.on('send', function(data) {
+            document.write('client2 send ', data, '<br/>');
+        });
+        socket.on('exception', function(data) {
+            document.write('client2 exception', data, '<br/>');
+        });
+        socket.on('disconnect', function() {
+            document.write('client2 Disconnected', '<br/>');
+        });
+    </script>
+</head>
+
+<body></body>
+
+</html>

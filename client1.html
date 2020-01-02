@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>client1</title>
+    <script src="socket.io.dev.js"></script>
+    <script>
+        const socket = io('http://localhost:3000');
+        socket.on('connect', function () {
+            document.write('client1 Connected<br/>');
+            socket.emit('events', {
+                test: 'client1 test'
+            });
+            socket.emit('send', 'client1');
+            socket.emit('identity', 0, response =>
+                document.write('client1 Identity:', response, '<br/>'),
+            );
+        });
+        socket.on('events', function(data) {
+            document.write('client1 event ', data, '<br/>');
+        });
+        socket.on('send', function(data) {
+            document.write('client1 send ', data, '<br/>');
+        });
+        socket.on('exception', function(data) {
+            document.write('client1 exception', data, '<br/>');
+        });
+        socket.on('disconnect', function() {
+            document.write('client1 Disconnected', '<br/>');
+        });
+    </script>
+</head>
+
+<body></body>
+
+</html>
